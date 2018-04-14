@@ -2,90 +2,75 @@ import random
 import yakus
 from card import Card
 from deck import Deck
+import unittest
 
-deck = Deck().deck
-player_one = []
-player_two = []
-player_three = []
-table = []
+class YakuTests(unittest.TestCase):
 
-# for i in range(0, 4):
-#     player_one.append(deck.pop())
-#     player_one.append(deck.pop())
-#     player_two.append(deck.pop())
-#     player_two.append(deck.pop())
-#     table.append(deck.pop())
-#     table.append(deck.pop())
+    def test(self):
+        player_one = []
+        player_two = []
+        player_three = []
 
-# Testing Plains Yakku
-for i in range(0, 10):
-    player_one.append(Card('January', 'Plain'))
+        # Testing Plains Yakku
+        for i in range(0, 10):
+            player_one.append(Card('January', 'Plain', 'assets/cards/july_boar.jpg', 0))
 
-if yakus.kasu(player_one) > 0:
-    print('1: True')
+        self.assertEqual(yakus.kasu(player_one)[0], 1)
 
-player_one.pop()
+        player_one.pop()
 
-if yakus.kasu(player_one) == 0:
-    print('2: True')
+        self.assertEqual(yakus.kasu(player_one)[0], 0)
 
-for i in range(0, 3):
-    player_one.append(Card('January', 'Plain'))
+        for i in range(0, 3):
+            player_one.append(Card('January', 'Plain', 'assets/cards/july_boar.jpg', 0))
 
-if yakus.kasu(player_one) == 3:
-    print('3: True')
+        self.assertEqual(yakus.kasu(player_one)[0], 3)
 
-player_one.append(Card('January', 'NotPlain'))
+        player_one.append(Card('January', 'NotPlain', 'assets/cards/july_boar.jpg', 0))
 
-if yakus.kasu(player_one) == 3:
-    print('4: True')
+        self.assertEqual(yakus.kasu(player_one)[0], 3) 
 
-# Testing Tane Yakus
+        # Testing Tane Yakus
 
-for i in range(0, 5):
-    player_two.append(Card('January', 'Animal'))
+        for i in range(0, 5):
+            player_two.append(Card('January', 'Animal', 'assets/cards/july_boar.jpg', 0))
 
-if yakus.tane_ino_shika_cho(player_two) == 1:
-    print('5: True')
+        self.assertEqual(yakus.tane_ino_shika_cho(player_two)[0], 1)
 
-player_two.append(Card('January', 'Boar'))
-player_two.append(Card('January', 'Deer'))
-player_two.append(Card('January', 'Butterfly'))
+        player_two.append(Card('January', 'Boar', 'assets/cards/july_boar.jpg', 0))
+        player_two.append(Card('January', 'Deer', 'assets/cards/july_boar.jpg', 0))
+        player_two.append(Card('January', 'Butterfly', 'assets/cards/july_boar.jpg', 0))
 
-if yakus.tane_ino_shika_cho(player_two) == 10:
-    print('6: True')
+        self.assertEqual(yakus.tane_ino_shika_cho(player_two)[0], 10)
 
-player_two.pop()
+        player_two.pop()
 
-if yakus.tane_ino_shika_cho(player_two) == 3:
-    print('7: True')
+        self.assertEqual(yakus.tane_ino_shika_cho(player_two)[0], 3)
 
-# Testing Ame Shiko Goko Sanko 
+        # Testing Ame Shiko Goko Sanko 
 
-for i in range(0, 4):
-    player_three.append(Card('January', 'Bright'))
+        for i in range(0, 4):
+            player_three.append(Card('January', 'Bright', 'assets/cards/july_boar.jpg', 0))
 
-if yakus.ame_shiko_goko_sanko(player_three) == 8:
-    print('8: True')
+        self.assertEqual(yakus.ame_shiko_goko_sanko(player_three)[0], 8)
 
-player_three.pop()
+        player_three.pop()
 
-if yakus.ame_shiko_goko_sanko(player_three) == 6:
-    print('9: True')
+        self.assertEqual(yakus.ame_shiko_goko_sanko(player_three)[0], 6)
+        
+        player_three.pop()
 
-player_three.pop()
+        self.assertEqual(yakus.ame_shiko_goko_sanko(player_three)[0], 0)
 
-if yakus.ame_shiko_goko_sanko(player_three) == 0:
-    print('10: True')
+        player_three.append(Card('January', 'Rainman', 'assets/cards/july_boar.jpg', 0))
+        player_three.append(Card('January', 'Bright', 'assets/cards/july_boar.jpg', 0))
 
-player_three.append(Card('January', 'Rainman'))
-player_three.append(Card('January', 'Bright'))
+        self.assertEqual(yakus.ame_shiko_goko_sanko(player_three)[0], 7)
 
-if yakus.ame_shiko_goko_sanko(player_three) == 7:
-    print('11: True')
+        player_three.append(Card('January', 'Bright', 'assets/cards/july_boar.jpg', 0))
 
-player_three.append(Card('January', 'Bright'))
+        self.assertEqual(yakus.ame_shiko_goko_sanko(player_three)[0], 10)
 
-if yakus.ame_shiko_goko_sanko(player_three) == 10:
-    print('12: True')
+test = YakuTests()
+test.test()
 
