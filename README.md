@@ -2,6 +2,7 @@
 Implementation of Koi Koi in Python
 # Instructions
 Install python3 according to instructions here: https://www.python.org/downloads/
+
 Install pip and pygame according to the instructions here: https://www.pygame.org/wiki/GettingStarted
 
 Then go into your console or terminal of choice and run:
